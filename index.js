@@ -254,8 +254,7 @@ class DatePicker extends Component {
             >
               <View
                   style={{flex: 1}}
-                  onStartShouldSetResponder={this.onStartShouldSetResponder}
-                  onMoveShouldSetResponder={this.onMoveShouldSetResponder}
+
               >
                 <TouchableHighlight
                     style={Style.datePickerMask}
@@ -269,20 +268,24 @@ class DatePicker extends Component {
                   >
                     <Animated.View
                         style={[Style.datePickerCon, {height: this.state.animatedHeight}, customStyles.datePickerCon]}
-                        onMoveShouldSetResponderCapture={this.props.modalOnMoveShouldSetResponderCapture}
-                        onStartShouldSetResponderCapture={this.props.modalOnStartShouldSetResponderCapture}
-                        onResponderTerminationRequest={this.props.modalOnResponderTerminationRequest}
+
                     >
-                      <DatePickerIOS
-                          date={this.state.date}
-                          mode={this.props.mode}
-                          minimumDate={this.props.minDate && this.getDate(this.props.minDate)}
-                          maximumDate={this.props.maxDate && this.getDate(this.props.maxDate)}
-                          onDateChange={(date) => this.setState({date: date})}
-                          minuteInterval={this.props.minuteInterval}
-                          timeZoneOffsetInMinutes={this.props.timeZoneOffsetInMinutes}
-                          style={[Style.datePicker, customStyles.datePicker]}
-                      />
+                      <View
+                          onStartShouldSetResponder={this.onStartShouldSetResponder}
+                          onMoveShouldSetResponder={this.onMoveShouldSetResponder}
+                          onResponderTerminationRequest={this.props.modalOnResponderTerminationRequest}
+                      >
+                        <DatePickerIOS
+                            date={this.state.date}
+                            mode={this.props.mode}
+                            minimumDate={this.props.minDate && this.getDate(this.props.minDate)}
+                            maximumDate={this.props.maxDate && this.getDate(this.props.maxDate)}
+                            onDateChange={(date) => this.setState({date: date})}
+                            minuteInterval={this.props.minuteInterval}
+                            timeZoneOffsetInMinutes={this.props.timeZoneOffsetInMinutes}
+                            style={[Style.datePicker, customStyles.datePicker]}
+                        />
+                      </View>
                       <TouchableHighlight
                           underlayColor={'transparent'}
                           onPress={this.onPressCancel}
@@ -298,6 +301,8 @@ class DatePicker extends Component {
                           underlayColor={'transparent'}
                           onPress={this.onPressConfirm}
                           style={[Style.btnText, Style.btnConfirm, customStyles.btnConfirm]}
+                          onStartShouldSetResponderCapture={this.props.modalOnStartShouldSetResponderCapture}
+                          onMoveShouldSetResponderCapture={this.props.modalOnMoveShouldSetResponderCapture}
                       >
                         <Text style={[Style.btnTextText, customStyles.btnTextConfirm]}>{this.props.confirmBtnText}</Text>
                       </TouchableHighlight>
