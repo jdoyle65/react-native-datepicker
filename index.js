@@ -256,9 +256,6 @@ class DatePicker extends Component {
                   style={{flex: 1}}
                   onStartShouldSetResponder={this.onStartShouldSetResponder}
                   onMoveShouldSetResponder={this.onMoveShouldSetResponder}
-                  onResponderTerminationRequest={this.props.modalOnResponderTerminationRequest}
-                  onMoveShouldSetResponderCapture={this.props.modalOnMoveShouldSetResponderCapture}
-                  onStartShouldSetResponderCapture={this.props.modalOnStartShouldSetResponderCapture}
               >
                 <TouchableHighlight
                     style={Style.datePickerMask}
@@ -272,6 +269,9 @@ class DatePicker extends Component {
                   >
                     <Animated.View
                         style={[Style.datePickerCon, {height: this.state.animatedHeight}, customStyles.datePickerCon]}
+                        onMoveShouldSetResponderCapture={this.props.modalOnMoveShouldSetResponderCapture}
+                        onStartShouldSetResponderCapture={this.props.modalOnStartShouldSetResponderCapture}
+                        onResponderTerminationRequest={this.props.modalOnResponderTerminationRequest}
                     >
                       <DatePickerIOS
                           date={this.state.date}
@@ -349,7 +349,9 @@ DatePicker.propTypes = {
   disabled: React.PropTypes.bool,
   onDateChange: React.PropTypes.func,
   placeholder: React.PropTypes.string,
-  modalOnResponderTerminationRequest: React.PropTypes.func
+  modalOnResponderTerminationRequest: React.PropTypes.func,
+  modalOnMoveShouldSetResponderCapture: React.PropTypes.func,
+  modalOnStartShouldSetResponderCapture: React.PropTypes.func
 };
 
 export default DatePicker;
